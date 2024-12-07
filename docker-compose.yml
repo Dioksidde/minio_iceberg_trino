@@ -1,4 +1,3 @@
-version: '3.7'
 services:
   minio:
     image: minio/minio:latest
@@ -13,7 +12,7 @@ services:
     volumes:
       - minio_data:/data
     networks:
-      - nessie_network
+      - trino_network
 
   nessie:
     image: ghcr.io/projectnessie/nessie:latest
@@ -24,11 +23,23 @@ services:
     ports:
       - "19120:19120"  # Nessie REST API
     networks:
-      - nessie_network
+      - trino_network
+
+  trino:
+    image: trinodb/trino:latest
+    container_name: trino
+    ports:
+      - "8080:8080"  # Expose Trino's Web UI
+    volumes:
+      - ./src:/etc/trino
+      - ./data:/var/trino/data
+    networks:
+      - trino_network
+
 
 volumes:
   minio_data:
 
 networks:
-  nessie_network:
+  trino_network:
     driver: bridge
