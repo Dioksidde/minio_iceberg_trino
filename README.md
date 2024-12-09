@@ -23,11 +23,11 @@ With a single `docker compose up -d`, you can experiment locally without wrestli
 
 ### Quick Start
 1. Clone the repository:  
-   git clone https://github.com/yourusername/your-repo.git  
-   cd your-repo
+   ```git clone https://github.com/yourusername/your-repo.git  
+   cd your-repo```
 
 2. Start the environment:  
-   docker compose up -d
+   `docker compose up -d
 
    This command will:  
    - Pull and run the MinIO, Nessie, and Trino containers.  
